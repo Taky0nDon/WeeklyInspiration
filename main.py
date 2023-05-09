@@ -10,6 +10,9 @@ password = data.password.iloc[0]
 recipient = data.recipient.iloc[0]
 SENDER_SMTP = data.sender_smtp.iloc[0]
 
+day_to_send = 1
+# 0 = monday, 1 = Tuesday, ... , 6 = Sunday
+
 def send_email(email=my_email, smtp_url=SENDER_SMTP, body="This email sent to you by tuesday python gang"):
     """Takes sending email, SMTP of sender, and email body as parameters."""
     global password, recipient
@@ -31,5 +34,5 @@ current_weekday = current_day.weekday()
 with open("quotes.txt") as quotes_file:
     weekly_quote = random.choice(quotes_file.readlines())
 
-if current_weekday == 1:
+if current_weekday == day_to_send:
     send_email(body=weekly_quote)
